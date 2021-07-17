@@ -34,3 +34,7 @@ INSERT INTO dog_breeds(breed, origin, size, average_life_span) VALUES ('Rottweil
 INSERT INTO dog_breeds(breed, origin, size, average_life_span) VALUES ('Pomeranian', 'Germany', 'Small', 14);
 INSERT INTO dog_breeds(breed, origin, size, average_life_span) VALUES ('Jack Russell Terrier', 'England', 'Small', 15);
 INSERT INTO dog_breeds(breed, origin, size, average_life_span) VALUES ('Australian Shepherd', 'Australia', 'Medium', 13);
+
+
+SELECT * FROM users
+DELETE * FROM users

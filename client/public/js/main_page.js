@@ -5,7 +5,7 @@ $(document).ready(function(){
 
     $.ajax({
       method:'GET',
-      url:'/api/sign-up'
+      url:'/sign-up'
     }).then(function(res){
       console.log(res.message);
       window.location.href = "/sign-up"
@@ -19,10 +19,10 @@ $(document).ready(function(){
 
     $.ajax({
       method:'GET',
-      url:'api/sign-in'
+      url:'/sign-in'
     }).then(function(res){
       console.log(res.message);
-      window.location.href = "/sign_in"
+      window.location.href = "/sign-in"
     })
   })
 

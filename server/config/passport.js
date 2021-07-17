@@ -21,7 +21,7 @@ module.exports = (passport, db) => {
     process.nextTick(function(){
       db.query("SELECT * FROM users WHERE username='" +username+ "'", function(err, user){
         if(user.length < 1)
-          return done(null, false, {message: 'no useer'});
+          return done(null, false, {message: 'no user'});
             if(!bcrypt.compareSync(password, user[0].password)){
               return done(null, false, {message: 'incorrect password'});
             }
@@ -37,7 +37,7 @@ module.exports = (passport, db) => {
   },
   function(req, username, password, done){
     process.nextTick(function(){
-      db.query("SELECT username FROM users WHERE username='" +username+ "'", function(err, data){
+      db.query("SELECT username FROM users WHERE username='" +username+ "'", function(err, user){
         if(user.length > 0){
           return done(null, false, {message: 'username taken'});
         }else{
