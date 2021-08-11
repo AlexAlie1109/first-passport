@@ -36,5 +36,5 @@ INSERT INTO dog_breeds(breed, origin, size, average_life_span) VALUES ('Jack Rus
 INSERT INTO dog_breeds(breed, origin, size, average_life_span) VALUES ('Australian Shepherd', 'Australia', 'Medium', 13);
 
 
-SELECT * FROM users
-DELETE * FROM users
+SELECT * FROM users;
+

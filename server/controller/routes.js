@@ -15,9 +15,9 @@ module.exports = (app, passport, db) =>{
     res.sendFile(path.join(__dirname, '../../client/public/html/sign_in.html'));
   })
 
-  app.get('/signed-in', function(req, res){
-    res.sendFile(path.join(__dirname, '../../client/public/signed_in.html'));
-  })
+  // app.get('/signed-in', function(req, res){
+  //   res.sendFile(path.join(__dirname, '../../client/public/signed_in.html'));
+  // })
 
 
   app.get('/api/sign-up', function(req, res){
@@ -40,9 +40,16 @@ module.exports = (app, passport, db) =>{
     })(req, res, next);
   });
 
+  app.get('/api/sign-in', function(req, res){
+    if(req.user){
+      res.json({message: 'signed-in', user_id: req.user_id});
+    }
+  });
 
   app.post('/api/sign-in', function(req, res, next){
     passport.authenticate('local-signin', function(err, user, info){
+      console.log(user);
+      console.log(info);
       if(err){
         return next(err);
       }
@@ -57,6 +64,8 @@ module.exports = (app, passport, db) =>{
       });
     })(req, res, next);
   })
+
+
 
 
 
