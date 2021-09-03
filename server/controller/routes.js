@@ -15,19 +15,22 @@ module.exports = (app, passport, db) =>{
     res.sendFile(path.join(__dirname, '../../client/public/html/sign_in.html'));
   })
 
-  // app.get('/signed-in', function(req, res){
-  //   res.sendFile(path.join(__dirname, '../../client/public/signed_in.html'));
-  // })
+  app.get('/signed-in', function(req, res){
+    res.sendFile(path.join(__dirname, '../../client/public/html/signed_in.html'));
+  });
 
 
-  app.get('/api/sign-up', function(req, res){
-    passport.authenticate('local-signup', function(err, user, info){
-      if(err){
-        return next(err);
-      }else{
-        res.json({user: user, info: info})
-      }
-    })(req, res);
+
+  app.get('/api/sign-up', function(req,res){
+    if(req.user){
+      res.json({message: 'signed-in', user_id: req.user.id});
+    }
+  });
+
+  app.get('/api/sign-in', function(req, res){
+    if(req.user){
+      res.json({message: 'signed-in', user_id: req.user_id});
+    }
   });
 
   app.post('/api/sign-up', function(req, res, next){
@@ -40,11 +43,16 @@ module.exports = (app, passport, db) =>{
     })(req, res, next);
   });
 
-  app.get('/api/sign-in', function(req, res){
-    if(req.user){
-      res.json({message: 'signed-in', user_id: req.user_id});
-    }
+  app.get('/api/sign-up', function(req, res){
+    passport.authenticate('local-signup', function(err, user, info){
+      if(err){
+        return next(err);
+      }else{
+        res.json({user: user, info: info})
+      }
+    })(req, res, next);
   });
+
 
   app.post('/api/sign-in', function(req, res, next){
     passport.authenticate('local-signin', function(err, user, info){
@@ -65,8 +73,11 @@ module.exports = (app, passport, db) =>{
     })(req, res, next);
   })
 
-
-
+  app.get('/api/signed-in', function(req, res){
+    if(req.user){
+      res.json({message: 'signed-in', user_id: req.user.id});
+    }
+  });
 
 
 }

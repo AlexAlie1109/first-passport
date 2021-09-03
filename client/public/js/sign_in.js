@@ -35,7 +35,7 @@ $(document).ready(function(){
           alert("Username Not Found")
         }
       }else{
-        window.location.href = "/"
+        window.location.href = '/signed-in'
       }
     })
  })
